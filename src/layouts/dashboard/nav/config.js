@@ -13,27 +13,27 @@ const navConfig = [
   },
   {
     title: 'Billing',
-    path: '/billing/app',
+    path: '/dashboard/billing',
     icon: icon('ic_analytics'),
   },
   {
     title: 'Complaints',
-    path: '',
+    path: '/dashboard/complaint',
     icon: icon('ic_analytics'),
   },
   {
     title: 'Live Meter',
-    path: '',
+    path: '/dashboard/billing',
     icon: icon('ic_analytics'),
   },
   {
     title: 'Devices',
-    path: '',
+    path: '/dashboard/blog',
     icon: icon('ic_analytics'),
   },
   {
     title: 'Payments',
-    path: '',
+    path: '/dashboard/billing',
     icon: icon('ic_analytics'),
   },
   {
@@ -45,11 +45,6 @@ const navConfig = [
     title: 'Settings',
     path: '/dashboard/user',
     icon: icon('ic_user'),
-  },
-  {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: icon('ic_blog'),
   },
   {
     title: 'login',
