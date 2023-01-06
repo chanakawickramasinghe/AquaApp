@@ -25,6 +25,15 @@ const PRIMARY = {
   contrastText: '#fff',
 };
 
+// const SECONDARY = {
+//   lighter: 'blue',
+//   light: 'blue',
+//   main: '#000000',
+//   dark: '#1939B7',
+//   darker: '#091A7A',
+//   contrastText: '#fff',
+// };
+
 const SECONDARY = {
   lighter: '#D6E4FF',
   light: '#84A9FF',

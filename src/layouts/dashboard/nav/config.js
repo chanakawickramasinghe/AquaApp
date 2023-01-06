@@ -2,14 +2,14 @@
 import SvgColor from '../../../components/svg-color';
 
 // ----------------------------------------------------------------------
-
-const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
+// change the icon type to PNG and SVG accordingly
+const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.png`} sx={{ width: 1, height: 1 }} />;
 
 const navConfig = [
   {
     title: 'Home',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: icon('home'),
   },
   {
     title: 'Billing',
