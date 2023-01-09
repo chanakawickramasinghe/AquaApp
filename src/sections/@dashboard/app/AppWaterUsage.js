@@ -7,11 +7,10 @@ import { Card, CardHeader } from '@mui/material';
 import { fNumber } from '../../../utils/formatNumber';
 // components
 import { useChart } from '../../../components/chart';
-// import { padding } from '@mui/system';
 
 // ----------------------------------------------------------------------
 
-const CHART_HEIGHT = 372;
+const CHART_HEIGHT = 145;
 const LEGEND_HEIGHT = 72;
 
 const StyledChartWrapper = styled('div')(({ theme }) => ({
@@ -30,19 +29,16 @@ const StyledChartWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-
-
 // ----------------------------------------------------------------------
 
-AppCurrentVisits.propTypes = {
+AppWaterUsage.propTypes = {
   title: PropTypes.string,
   subheader: PropTypes.string,
   chartColors: PropTypes.arrayOf(PropTypes.string),
   chartData: PropTypes.array,
-  largewords: PropTypes.string,
 };
 
-export default function AppCurrentVisits({ title, subheader, chartColors, chartData, largewords, ...other }) {
+export default function AppWaterUsage({ title, subheader, chartColors, chartData, ...other }) {
   const theme = useTheme();
 
   const chartLabels = chartData.map((i) => i.label);
@@ -72,30 +68,20 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
-        <center>
-          <div style={{backgroundColor: '#2065D1',
-                       color: 'white', 
+
+      <center>
+          <div style={{backgroundColor: 'white',
+                       color: '#2065D1', 
                        marginLeft: '40px',
                        marginRight: '40px',
-                       marginTop: '25px',
+                       marginTop: '5px',
                        borderRadius: '10px',
-                       marginBottom: '25px',
+                       marginBottom: '55px',
                        }}>
                         <br/>
-            <h3>Your Due Amount </h3>
-            <h1>Rs. 2461.34</h1>
-            <button style={{backgroundColor: 'white', color: 'blue', borderRadius: '5px',
-                            paddingLeft: '25px', paddingRight: '25px', borderColor: 'white'
-                            // paddingTop: '4px', paddingBottom: '4px'
-                          }}>
-              <h3>Pay Now</h3>
-            </button>
-            <p style={{paddingBottom:'33px'}}>
-              Last Payment <br/>
-              24 November 2021 <br/>
-              5400.00 LKR <br/>
-              (Online Transaction)
-            </p>
+            <h2>You Have Consumed <br/>
+            3 Units Today!!! </h2>
+        
           </div>
         </center>
     </Card>

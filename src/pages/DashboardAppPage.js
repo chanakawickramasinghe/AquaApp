@@ -16,6 +16,7 @@ import {
   AppWidgetSummary,
   AppCurrentSubject,
   AppConversionRates,
+  AppWaterUsage,
 } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -73,9 +74,11 @@ export default function DashboardAppPage() {
             />
           </Grid>
 
+          
+
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
-              title="Current Visits"
+              title="Payment Dues"
               chartData={[
                 { label: 'America', value: 4344 },
                 { label: 'Asia', value: 5435 },
@@ -92,19 +95,45 @@ export default function DashboardAppPage() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={2}>
-            <AppWidgetSummary title="Daily Usage" total={3.0} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="Daily Usage" color="info" total="3.0" icon={'material-symbols:water-drop-outline'} />
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={2}>
+            <AppWidgetSummary title="Monthly Usage" total="28" color="info" icon={'material-symbols:calendar-month-outline-rounded'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={2}>
-            <AppWidgetSummary title="Monthly Usage" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="Flow Rate" total="449" color="info" icon={'mdi:water-flow'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={2}>
-            <AppWidgetSummary title="Flow Rate" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
-          </Grid>
+          {/* <Grid item xs={12} sm={6} md={2}>
+            <AppWidgetSummary title="Flow Rate" total={1723315} color="warning" icon={'mdi:water-flow'} />
+          </Grid> */}
 
           <Grid item xs={12} sm={6} md={2}>
+            <AppWidgetSummary title="Status" total="ON" color="warning" icon={'pajamas:status-closed'} />
+          </Grid>
+
+          {/* <Grid item xs={12} sm={6} md={2}>
             <AppWidgetSummary title="Status" total={234} color="error" icon={'ant-design:bug-filled'} />
+          </Grid> */}
+
+          <Grid item xs={12} md={6} lg={4}>
+            <AppWaterUsage
+              title="Water Usage"
+              chartData={[
+                { label: 'America', value: 4344 },
+                { label: 'Asia', value: 5435 },
+                { label: 'Europe', value: 1443 },
+                { label: 'Africa', value: 4443 },
+              ]}
+              chartColors={[
+                theme.palette.primary.main,
+                theme.palette.info.main,
+                theme.palette.warning.main,
+                theme.palette.error.main,
+              ]}
+            />
           </Grid>
 
           {/* <Grid item xs={12} md={6} lg={8}>
@@ -210,7 +239,7 @@ export default function DashboardAppPage() {
               ]}
             />
           </Grid> */}
-        </Grid>
+        </Grid> 
       </Container>
     </>
   );
