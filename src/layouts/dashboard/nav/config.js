@@ -38,12 +38,12 @@ const navConfig = [
   },
   {
     title: 'Subscriptions',
-    path: '/dashboard/products',
+    path: '/dashboard/subscription',
     icon: icon('subscriptions'),
   },
   {
     title: 'Settings',
-    path: '/dashboard/user',
+    path: '/dashboard/settings',
     icon: icon('settings'),
   },
   // {
