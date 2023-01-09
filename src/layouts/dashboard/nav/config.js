@@ -23,7 +23,7 @@ const navConfig = [
   },
   {
     title: 'Live Meter',
-    path: '/dashboard/billing',
+    path: '/dashboard/live',
     icon: icon('meter'),
   },
   {
@@ -33,7 +33,7 @@ const navConfig = [
   },
   {
     title: 'Payments',
-    path: '/dashboard/billing',
+    path: '/dashboard/payments',
     icon: icon('payments'),
   },
   {
