@@ -14,53 +14,53 @@ const navConfig = [
   {
     title: 'Billing',
     path: '/dashboard/billing',
-    icon: icon('ic_analytics'),
+    icon: icon('bill'),
   },
   {
     title: 'Complaints',
     path: '/dashboard/complaint',
-    icon: icon('ic_analytics'),
+    icon: icon('complaint'),
   },
   {
     title: 'Live Meter',
     path: '/dashboard/billing',
-    icon: icon('ic_analytics'),
+    icon: icon('meter'),
   },
   {
     title: 'Devices',
     path: '/dashboard/blog',
-    icon: icon('ic_analytics'),
+    icon: icon('devices'),
   },
   {
     title: 'Payments',
     path: '/dashboard/billing',
-    icon: icon('ic_analytics'),
+    icon: icon('payments'),
   },
   {
     title: 'Subscriptions',
     path: '/dashboard/products',
-    icon: icon('ic_analytics'),
+    icon: icon('subscriptions'),
   },
   {
     title: 'Settings',
     path: '/dashboard/user',
-    icon: icon('ic_user'),
+    icon: icon('settings'),
   },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'register',
-    path: '/register',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
-  },
+  // {
+  //   title: 'login',
+  //   path: '/login',
+  //   icon: icon('ic_lock'),
+  // },
+  // {
+  //   title: 'register',
+  //   path: '/register',
+  //   icon: icon('ic_lock'),
+  // },
+  // {
+  //   title: 'Not found',
+  //   path: '/404',
+  //   icon: icon('ic_disabled'),
+  // },
 ];
 
 export default navConfig;
