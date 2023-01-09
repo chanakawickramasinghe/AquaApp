@@ -19,6 +19,7 @@ import {
   AppWaterUsage,
 } from '../sections/@dashboard/app';
 import rocket from '../components/img/rocket.png';
+import close from '../components/img/close.png';
 // ----------------------------------------------------------------------
 
 export default function SubscriptionsPage() {
@@ -45,7 +46,9 @@ export default function SubscriptionsPage() {
                        color:'#2065D1',
                        borderRadius:'5px'}}>
                       <b>Upgrade your features : </b> You can subscribe one of your packages <br/> to access more features!
-
+                      {/* <img src={close} alt="close" height="40px"
+                      style={{float:'right', paddingBottom:'5px', marginBottom:'15px'}}
+                      /> */}
           </div>
           </center>
         </Grid>
