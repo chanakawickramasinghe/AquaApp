@@ -15,6 +15,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import { useState } from 'react';
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -76,6 +77,11 @@ const StyledContent = styled('div')(({ theme }) => ({
 }));
 
 export default function Payments() {
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const handleTabChange = (event, newTabIndex) => {
+    setTabIndex(newTabIndex);
+  };
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -96,7 +102,7 @@ export default function Payments() {
           <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
+                <TabList value={value} onChange={handleChange} aria-label="lab API tabs example" centered>
                   <Tab label="Item One" value="1" />
                   <Tab label="Item Two" value="2" />
                 </TabList>
