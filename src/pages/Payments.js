@@ -45,11 +45,10 @@ function createData(
   return { amount, status };
 }
 const rows = [
-  createData('Master WF', 'Master'),
-  createData('Slave WF1', 'Master'),
-  createData('Slave WF2', 'Master'),
-  createData('Slave WF3', 'Master'),
-  createData('Slave WF4', 'Master'),
+  createData('December, 2022', '1200.00 LKR'),
+  createData('November, 2022', '1200.00 LKR'),
+  createData('Octorber, 2022', '1200.00 LKR'),
+  createData('Total', '3600.00 LKR'),
 ];
 
 const StyledRoot = styled('div')(({ theme }) => ({
