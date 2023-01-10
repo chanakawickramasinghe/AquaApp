@@ -13,6 +13,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import BillingPage from './pages/BillingPage';
 import ComplaintPage from './pages/ComplaintPage';
 import LiveMeter from './pages/LiveMeter';
+import Modules from './pages/Modules';
 
 // ----------------------------------------------------------------------
 
@@ -30,6 +31,7 @@ export default function Router() {
         { path: 'blog', element: <BlogPage /> },
         { path: 'complaint', element: <ComplaintPage /> },
         { path: 'live', element: <LiveMeter /> },
+        { path: 'modules', element: <Modules /> },
       ],
     },
     {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import Box from '@mui/material/Box';
 // components
 import Iconify from '../../../components/iconify';
 
@@ -18,7 +19,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <>
+    <>    
       <Stack spacing={3}>
         <TextField name="text" label="Name" />
         <TextField name="text" label="Account Number" />
