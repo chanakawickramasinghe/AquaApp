@@ -17,7 +17,7 @@ import {
   AppCurrentSubject,
   AppConversionRates,
 } from '../sections/@dashboard/app';
-
+import close from '../components/img/close.png';
 // ----------------------------------------------------------------------
 
 export default function LiveMeter() {
@@ -30,6 +30,27 @@ export default function LiveMeter() {
       </Helmet>
 
       <Container maxWidth="xl">
+      <Typography variant="h4" sx={{ mb: 5 }}>
+          Live Meter
+        </Typography>
+
+        <Grid item xs={12} md={6} lg={8}>
+          <center>
+          <div style={{background:'white', 
+                      marginLeft: '100px',
+                      marginRight: '100px',
+                      marginBottom: '30px',
+                      padding: '30px',
+                       color:'#2065D1',
+                       borderRadius:'5px'}}>
+                        <img src={close} alt="close" height="20px"
+                      style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
+                      />
+                      <b>Bill Calculator : </b> Consumption will provide for 30 days when calculating 
+                       <br/> the bill amount and this will calculate the domestic bill amount.            
+          </div>
+          </center>
+        </Grid>
 
         <Grid container spacing={3}>
  

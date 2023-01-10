@@ -45,10 +45,10 @@ export default function SubscriptionsPage() {
                       padding: '30px',
                        color:'#2065D1',
                        borderRadius:'5px'}}>
-                      <b>Upgrade your features : </b> You can subscribe one of your packages <br/> to access more features!
-                      {/* <img src={close} alt="close" height="40px"
-                      style={{float:'right', paddingBottom:'5px', marginBottom:'15px'}}
-                      /> */}
+                        <img src={close} alt="close" height="20px"
+                      style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
+                      />
+                      <b>Upgrade your features : </b> You can subscribe one of your packages <br/> to access more features!            
           </div>
           </center>
         </Grid>

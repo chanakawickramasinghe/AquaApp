@@ -12,6 +12,7 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
+import close from '../components/img/close.png';
 
 function createData(
   date : String,
@@ -40,6 +41,24 @@ export default function Billing() {
         <Typography variant="h4" sx={{ mb: 5 }}>
           Complaints
         </Typography>
+
+        <Grid item xs={12} md={6} lg={8}>
+          <center>
+          <div style={{background:'white', 
+                      marginLeft: '100px',
+                      marginRight: '100px',
+                      marginBottom: '30px',
+                      padding: '30px',
+                       color:'#2065D1',
+                       borderRadius:'5px'}}>
+                        <img src={close} alt="close" height="20px"
+                      style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
+                      />
+                      <b>You Have Any Complaints : </b> We operate a 24 hour call center on customer
+                       <br/> care hotline 1939. You can call this hotline also to lodge your complaints.           
+          </div>
+          </center>
+        </Grid>
 
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -74,7 +93,7 @@ export default function Billing() {
                        marginTop: '5px',
                        borderRadius: '2px',
                        marginBottom: '55px',
-
+                        borderColor: 'white',
                        padding:'15px',
                        color:'white',}}>New Complaint</button>
   

@@ -12,6 +12,7 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
+import close from '../components/img/close.png';
 
 function createData(
   month : String,
@@ -44,6 +45,24 @@ export default function Billing() {
           Billing
         </Typography>
     
+        <Grid item xs={12} md={6} lg={8}>
+          <center>
+          <div style={{background:'white', 
+                      marginLeft: '100px',
+                      marginRight: '100px',
+                      marginBottom: '30px',
+                      padding: '30px',
+                       color:'#2065D1',
+                       borderRadius:'5px'}}>
+                        <img src={close} alt="close" height="20px"
+                      style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
+                      />
+                      <b>History : </b> You can see "Bill History" and "Payment History" back
+                       <br/> to 12 months, if you want to see more info touch on each row.            
+          </div>
+          </center>
+        </Grid>
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
