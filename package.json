@@ -38,12 +38,16 @@
     ]
   },
   "dependencies": {
+    "@coreui/icons": "^2.1.0",
+    "@coreui/icons-react": "^2.1.0",
+    "@coreui/react": "^4.5.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@faker-js/faker": "^7.6.0",
     "@iconify/react": "^4.0.0",
     "@mui/lab": "^5.0.0-alpha.103",
     "@mui/material": "^5.10.9",
+    "@mui/x-data-grid": "^5.17.18",
     "apexcharts": "^3.36.0",
     "change-case": "^4.1.2",
     "date-fns": "^2.29.3",
