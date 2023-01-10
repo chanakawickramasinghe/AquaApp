@@ -147,43 +147,38 @@ export default function Modules() {
                           <TextField
                             required
                             id="outlined-required"
-                            label="Required"
-                            defaultValue="Hello World"
+                            label="Device Name"
+                            defaultValue="Master WF"
                           />
                           <TextField
                             disabled
-                            id="outlined-disabled"
-                            label="Disabled"
-                            defaultValue="Hello World"
+                            id="outlined-required"
+                            label="Device Type"
+                            defaultValue="Water Flow Sensor"
                           />
                           <TextField
-                            id="outlined-password-input"
-                            label="Password"
-                            type="password"
-                            autoComplete="current-password"
+                            disabled
+                            id="outlined-required"
+                            label="Device Position"
+                            defaultValue="Master"
                           />
                           <TextField
-                            id="outlined-read-only-input"
-                            label="Read Only"
-                            defaultValue="Hello World"
-                            InputProps={{
-                              readOnly: true,
-                            }}
+                            disabled
+                            id="outlined-required"
+                            label="Device Status"
+                            defaultValue="ON"
                           />
                           <TextField
-                            id="outlined-number"
-                            label="Number"
-                            type="number"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
+                            disabled
+                            id="outlined-required"
+                            label="Connected Date"
+                            defaultValue="2023.01.10"
                           />
-                          <TextField id="outlined-search" label="Search field" type="search" />
                           <TextField
-                            id="outlined-helperText"
-                            label="Helper text"
-                            defaultValue="Default Value"
-                            helperText="Some important text"
+                            disabled
+                            id="outlined-required"
+                            label="Name"
+                            defaultValue="Name"
                           />
                         </div>
                       </Box>
@@ -243,60 +238,55 @@ export default function Modules() {
                       </Grid>
                       <Grid item xs={3}>
                         <Box sx={{ typography: 'body1', fontWeight: 'bold', mb: 3, ml: 2}}>
-                              Master WF
-                        </Box>
-                        <Box
-                          component="form"
-                          sx={{
-                            '& .MuiTextField-root': { mb: 3, ml: 2  ,width: '20ch' },
-                          }}
-                          noValidate
-                          autoComplete="off"
-                        >
-                          <div>
-                            <TextField
-                              required
-                              id="outlined-required"
-                              label="Required"
-                              defaultValue="Hello World"
-                            />
-                            <TextField
-                              disabled
-                              id="outlined-disabled"
-                              label="Disabled"
-                              defaultValue="Hello World"
-                            />
-                            <TextField
-                              id="outlined-password-input"
-                              label="Password"
-                              type="password"
-                              autoComplete="current-password"
-                            />
-                            <TextField
-                              id="outlined-read-only-input"
-                              label="Read Only"
-                              defaultValue="Hello World"
-                              InputProps={{
-                                readOnly: true,
-                              }}
-                            />
-                            <TextField
-                              id="outlined-number"
-                              label="Number"
-                              type="number"
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                            />
-                            <TextField id="outlined-search" label="Search field" type="search" />
-                            <TextField
-                              id="outlined-helperText"
-                              label="Helper text"
-                              defaultValue="Default Value"
-                              helperText="Some important text"
-                            />
-                          </div>
-                        </Box>
+                            Master WF
+                      </Box>
+                      <Box
+                        component="form"
+                        sx={{
+                          '& .MuiTextField-root': { mb: 3, ml: 2  ,width: '20ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <div>
+                          <TextField
+                            required
+                            id="outlined-required"
+                            label="Device Name"
+                            defaultValue="Master WF"
+                          />
+                          <TextField
+                            disabled
+                            id="outlined-required"
+                            label="Device Type"
+                            defaultValue="Water Flow Sensor"
+                          />
+                          <TextField
+                            disabled
+                            id="outlined-required"
+                            label="Device Position"
+                            defaultValue="Master"
+                          />
+                          <TextField
+                            disabled
+                            id="outlined-required"
+                            label="Device Status"
+                            defaultValue="ON"
+                          />
+                          <TextField
+                            disabled
+                            id="outlined-required"
+                            label="Connected Date"
+                            defaultValue="2023.01.10"
+                          />
+                          <TextField
+                            disabled
+                            id="outlined-required"
+                            label="Name"
+                            defaultValue="Name"
+                          />
+                        </div>
+                      </Box>
                       </Grid> 
                       <Grid item xs={5}>
                         <Box sx={{ typography: 'body1', fontWeight: 'bold', mb: 3, ml: 2}} display="flex"

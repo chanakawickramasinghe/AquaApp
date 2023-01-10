@@ -64,18 +64,24 @@ const navConfig = [
     path: '/dashboard/subscription',
     icon: icon('subscriptions'),
   },
-  {
-    component: CNavItem,
-    title: 'Settings',
-    path: '/dashboard/settings',
-    icon: icon('settings'),
-  },
+  // {
+  //   component: CNavItem,
+  //   title: 'Settings',
+  //   path: '/dashboard/settings',
+  //   icon: icon('settings'),
+  // },
   {
     component: CNavItem,
     title: 'Modules',
     path: '/dashboard/modules',
-    icon: icon('modules'),
+    icon: icon('settings'),
   },
+  // {
+  //   component: CNavItem,
+  //   title: 'Payments',
+  //   path: '/dashboard/payments',
+  //   icon: icon('modules'),
+  // },
   // {
   //   component: CNavGroup,
   //   title: 'Buttons',
