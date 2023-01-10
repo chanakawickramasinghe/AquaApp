@@ -110,8 +110,7 @@ export default function Payments() {
                       <Table aria-label="simple table">
                         <TableHead>
                           <TableRow>
-                            <TableCell>Device Type</TableCell>
-                            <TableCell>Device Name</TableCell>
+                            <TableCell>Pending Payments</TableCell>
                             <TableCell> </TableCell>
                           </TableRow>
                         </TableHead>
@@ -122,9 +121,8 @@ export default function Payments() {
                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                               
-                              <TableCell style={{color:'green'}}>{row.status}</TableCell>
                               <TableCell><b>{row.amount}</b></TableCell>
-                              <TableCell>ICON</TableCell>
+                              <TableCell style={{color:'green'}}>{row.status}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
