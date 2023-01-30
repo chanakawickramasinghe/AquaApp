@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Grid, Container, TextField } from '@mui/material';
+import { Grid, Container, TextField, Typography} from '@mui/material';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
@@ -92,22 +92,25 @@ export default function Payments() {
   return (
     <>
       <Helmet>
-        <title> Aqua App - Modules </title>
+        <title> Aqua App - Payment </title>
       </Helmet>
 
 
       <Container maxWidth="xl">
+      <Typography variant="h4" sx={{ mb: 5 }}>
+          Payments
+        </Typography>
 
         <Grid container spacing={3}>
           <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <TabContext value={value}>
+            {/* <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList value={value} onChange={handleChange} aria-label="lab API tabs example" centered>
                   <Tab label="Item One" value="1" />
                   <Tab label="Item Two" value="2" />
                 </TabList>
               </Box>
-              <TabPanel value="1">
+              <TabPanel value="1"> */}
               <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={1}>
                   <Grid item xs={4}>
@@ -180,9 +183,9 @@ export default function Payments() {
                     </Grid>
                 </Grid>                   
               </Box>    
-              </TabPanel>
-              <TabPanel value="2">
-                <Box sx={{ flexGrow: 1 }}>
+              {/* </TabPanel>
+              <TabPanel value="2"> */}
+                {/* <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={1}>
                     <Grid item xs={4}>
                       <TableContainer component={Paper}>
@@ -263,9 +266,9 @@ export default function Payments() {
                       </Box>
                       </Grid> 
                   </Grid>                   
-                </Box>      
-              </TabPanel>
-            </TabContext>
+                </Box>       */}
+              {/* </TabPanel>
+            </TabContext> */}
           </Box>
         </Grid>
       </Container>
