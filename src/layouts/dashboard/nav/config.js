@@ -54,6 +54,12 @@ const navConfig = [
   },
   {
     component: CNavItem,
+    title: 'Modules',
+    path: '/dashboard/modules',
+    icon: icon('settings'),
+  },
+  {
+    component: CNavItem,
     title: 'Payments',
     path: '/dashboard/payments',
     icon: icon('payments'),
@@ -70,12 +76,7 @@ const navConfig = [
   //   path: '/dashboard/settings',
   //   icon: icon('settings'),
   // },
-  {
-    component: CNavItem,
-    title: 'Modules',
-    path: '/dashboard/modules',
-    icon: icon('settings'),
-  },
+  
   // {
   //   component: CNavItem,
   //   title: 'Payments',
