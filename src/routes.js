@@ -15,6 +15,7 @@ import ComplaintPage from './pages/ComplaintPage';
 import LiveMeter from './pages/LiveMeter';
 import Modules from './pages/Modules';
 import Payments from './pages/Payments';
+import Test from './pages/Test';
 
 // ----------------------------------------------------------------------
 
@@ -34,6 +35,7 @@ export default function Router() {
         { path: 'live', element: <LiveMeter /> },
         { path: 'modules', element: <Modules /> },
         { path: 'payments', element: <Payments /> },
+        { path: 'test', element: <Test /> },
       ],
     },
     {

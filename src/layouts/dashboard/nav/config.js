@@ -66,6 +66,12 @@ const navConfig = [
   },
   {
     component: CNavItem,
+    title: 'Test',
+    path: '/dashboard/test',
+    icon: icon('subscriptions'),
+  },
+  {
+    component: CNavItem,
     title: 'Subscriptions',
     path: '/dashboard/subscription',
     icon: icon('subscriptions'),
