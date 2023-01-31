@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import {useRef} from 'react';
+import { set } from 'lodash';
 import {addDoc,collection } from "@firebase/firestore";
 import {firestore} from "../../firebase";
 
@@ -67,15 +68,31 @@ export default function CustomizedDialogs() {
   };
 
   const titleRef = useRef(null);
-    const ref = collection (firestore,"messages"); 
+  const descRef = useRef(null);
+
+  const currentDate = new Date();
+
+  console.log(currentDate.toLocaleDateString());
+
+
+  const ref = collection (firestore,"Complaints"); 
+
+  
 
     const handleSave = async (e) => {
         e.preventDefault();
         console.log(titleRef.current.value);
+        console.log(descRef.current.value);
+        
 
         const data = {
             Title: titleRef.current.value,
+            Description: descRef.current.value,
+            Status: 'Not Fixed',
+            Date: currentDate.toLocaleDateString(),
         }
+
+        
 
         try{
             addDoc(ref,data);
@@ -103,11 +120,11 @@ export default function CustomizedDialogs() {
         
           <Typography gutterBottom>
           Complaint Type <br/>
-          <input type="textarea" style={{  width: '500px'}} id="Title" ref={titleRef} />
+          <input type="text" style={{  width: '500px'}} id="Title" ref={titleRef} />
           </Typography>
           <Typography gutterBottom>
           Description <br/>
-          <input type="textarea" style={{  width: '500px', height: '200px'}} id="name" ref={titleRef} />
+          <input type="textarea" style={{  width: '500px', height: '200px'}} id="name" ref={descRef} />
           </Typography>
         </DialogContent>
         <DialogActions>
