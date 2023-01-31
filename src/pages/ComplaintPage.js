@@ -14,8 +14,11 @@ import {addDoc,collection, getDocs  } from "@firebase/firestore";
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
+import CustomizedDialogs from '../components/pop-ups/complaint';
 import close from '../components/img/close.png';
 import {firestore} from "../firebase";
+
+
 
 function createData(
   date : String,
@@ -67,7 +70,7 @@ export default function Billing() {
         <Typography variant="h4" sx={{ mb: 5 }}>
           Complaints
         </Typography>
-
+        {/* <CustomizedDialogs/> */}
         <Grid item xs={12} md={6} lg={8}>
           <center>
           <div style={{background:'white', 
@@ -118,15 +121,17 @@ export default function Billing() {
       </Table>
     </TableContainer>
     
-    <button style={{background:'#2065D1', marginLeft: '800px',
+    {/* <button style={{background:'#2065D1', marginLeft: '800px',
                        marginRight: '40px',
                        marginTop: '5px',
                        borderRadius: '2px',
                        marginBottom: '55px',
                         borderColor: 'white',
                        padding:'15px',
-                       color:'white',}}>New Complaint</button>
+                       color:'white',}}></button> */}
+        <CustomizedDialogs/>               
   
 </Container>
+
   );
 }
