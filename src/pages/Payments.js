@@ -15,11 +15,14 @@ import TabPanel from '@mui/lab/TabPanel';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import Button from '@mui/material/Button';
+import {addDoc,collection } from "@firebase/firestore";
+import {firestore} from "../firebase";
 import Logo from '../components/logo';
 import useResponsive from '../hooks/useResponsive';
 import { RegisterForm } from '../sections/auth/login';
@@ -88,6 +91,28 @@ export default function Payments() {
     setValue(newValue);
   };
   const mdUp = useResponsive('up', 'md');
+  const currentDate = new Date();
+
+  const amountRef = useRef(null);
+    const ref = collection (firestore,"Payment"); 
+
+    const handleSave = async (e) => {
+        e.preventDefault();
+        console.log(amountRef.current.value);
+
+        const data = {
+            Amount: amountRef.current.value,
+            PaidDate: currentDate.toLocaleDateString(),
+        }
+
+        try{
+            addDoc(ref,data);
+        }catch(e){
+            console.log(e);
+        }
+    };
+
+    
 
   return (
     <>
@@ -113,6 +138,7 @@ export default function Payments() {
               <TabPanel value="1"> */}
               <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={1}>
+                
                   <Grid item xs={4}>
                     <TableContainer component={Paper}>
                       <Table aria-label="simple table">
@@ -138,49 +164,63 @@ export default function Payments() {
                     </TableContainer>
                     </Grid>
                     <Grid item xs={3}>
+                    <form onSubmit={handleSave}>
                       <Box
-                        component="form"
-                        sx={{
-                          '& .MuiTextField-root': { mb: 3, ml: 2  ,width: '40ch' },
-                        }}
-                        noValidate
-                        autoComplete="off"
+                        // component="form"
+                        // sx={{
+                        //   '& .MuiTextField-root': { mb: 3, ml: 2  ,width: '40ch' },
+                        // }}
+                        // noValidate
+                        // autoComplete="off"
                       >
                         <div>
+                        <input type="text" id="amount" ref={amountRef} 
+                        style={{margin: '7px', marginLeft: '50px', width: '300px', height: '50px',
+                            borderRadius: '8px', fontSize: '15px', paddingLeft: '12px', borderColor: 'grey'
+                      }}
+                         placeholder="Amount"
+                        />
+                        {/* <button type="submit">Save</button>
                           <TextField
-                            required
+                            
                             id="outlined-required"
                             label="Amount"
-                            defaultValue="Enter your amount here"
-                          />
+                            // type="text"
+                            // ref={messageRef}
+                            // defaultValue="Enter your amount here"
+                          /> */}
                           <TextField
-                            disabled
+                            style={{margin: '7px', marginLeft: '50px', width: '300px'}}
                             id="outlined-required"
                             label="Card Number"
-                            defaultValue="Enter your card number here"
+                            // defaultValue="Enter your card number here"
                           />
                           <TextField
-                            disabled
+                            style={{margin: '7px', width: '300px', marginLeft: '50px'}}
                             id="outlined-required"
                             label="Expiry Date"
-                            defaultValue="Enter expiry date here"
+                            // defaultValue="Enter expiry date here"
                           />
                           <TextField
-                            disabled
+                            style={{margin: '7px', width: '300px', marginLeft: '50px'}}
                             id="outlined-required"
-                            label="CCV"
-                            defaultValue="Enter CCV here"
+                            label="CVV"
+
                           />                          
                         </div>
                         <Box sx={{ typography: 'body1', fontWeight: 'bold', mb: 3, ml: 2}} display="flex"
                             justifyContent="flex-end"
                             alignItems="flex-end">
                           <Stack direction="row" spacing={2}>
-                            <Button variant="contained" color="primary">Make Payment</Button>
+                            <Button style={{margin: '10px', width: '150px', marginLeft: '1520px', float: 'right'}}
+                            type="submit" variant="contained" color="primary">Make Payment</Button>
+                            
                           </Stack>
                         </Box>
-                      </Box>
+                      </Box> 
+                      </form>
                     </Grid>
+                    
                 </Grid>                   
               </Box>    
               {/* </TabPanel>
