@@ -55,17 +55,17 @@ export default function Billing() {
   }, []);
 
   const rows = data.map((row) => {
-    const billDate = row ? row.BillDate.toDate() : null;
-    const billYear = billDate ? billDate.getFullYear(): null;
-    const billMonth = billDate ? billDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
-    const billDay = billDate ? billDate.getDate(): null;
+    // const billDate = row ? row.BillDate.toDate() : null;
+    // const billYear = billDate ? billDate.getFullYear(): null;
+    // const billMonth = billDate ? billDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
+    // const billDay = billDate ? billDate.getDate(): null;
 
-    const paidDate = row ? row.PaidDate.toDate() : null;
-    const paidYear = paidDate ? paidDate.getFullYear(): null;
-    const paidMonth = paidDate ? paidDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
-    const paidDay = paidDate ? paidDate.getDate(): null;
+    // const paidDate = row ? row.PaidDate.toDate() : null;
+    // const paidYear = paidDate ? paidDate.getFullYear(): null;
+    // const paidMonth = paidDate ? paidDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
+    // const paidDay = paidDate ? paidDate.getDate(): null;
 
-    return createData(row.Month, `${billYear}-${billMonth}-${billDay}`, row.Units, row.Amount, row.Status, `${paidYear}-${paidMonth}-${paidDay}`);
+    return createData(row.Month, row.BillDate, row.Units, row.Amount, row.Status, row.PaidDate);
   });
   
   
