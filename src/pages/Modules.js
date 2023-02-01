@@ -204,22 +204,25 @@ export default function Modules() {
 
 <div 
 style={{
-  marginLeft: '50px'
+  marginLeft: '40px'
   
 
 }}
 
 >
-<DonutChart 
+
+<DonutChart width="350" height="350" legend={false} colors={['#2065D1']}
   data={[
     {
       label: 'Battery Level',
       value: 25,
+
     },
     {
       label: '',
       value: 75,
       isEmpty: true,
+
     },
   ]}
 />;
@@ -332,6 +335,49 @@ style={{
                             ]}
                           />
                       </Grid> 
+                      <div 
+style={{
+  marginLeft: '40px'
+  
+
+}}
+
+>
+
+<DonutChart width="350" height="350" legend={false} 
+colors={['#2065D1']}
+  data={[
+    {
+      label: 'Water Flow Rate',
+      value: 27.9,
+
+    },
+    {
+      label: '',
+      value: 50,
+      isEmpty: true,
+
+    },
+  ]}
+/>;
+
+<DonutChart width="350" height="350" legend={false} colors={['#2065D1']}
+  data={[
+    {
+      label: 'Battery Level',
+      value: 25,
+
+    },
+    {
+      label: '',
+      value: 75,
+      isEmpty: true,
+
+    },
+  ]}
+/>;
+
+</div>
                   </Grid>                   
                 </Box>      
               </TabPanel>
