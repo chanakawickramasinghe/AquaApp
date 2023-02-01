@@ -160,7 +160,7 @@ export default function Payments() {
     ...data.map((row) => {
       return createData(row.Month, `${row.Amount} LKR`);
     }),
-    createData(next,`${(total/1000)*30*150}.00 LKR`),
+    // createData(next,`${(total/1000)*30*150}.00 LKR`),
     // createData(next, value1),
   ];
   
@@ -234,7 +234,7 @@ export default function Payments() {
                       <Table aria-label="simple table">
                         <TableHead>
                           <TableRow>
-                            <TableCell>Pending Payments</TableCell>
+                            <TableCell>Previous Payments</TableCell>
                             <TableCell> </TableCell>
                           </TableRow>
                         </TableHead>
@@ -248,7 +248,12 @@ export default function Payments() {
                               <TableCell><b>{row.amount}</b></TableCell>
                               <TableCell style={{color:'green'}}>{row.status}</TableCell>
                             </TableRow>
+                            
                           ))}
+                            <TableRow>
+                              <TableCell><h3>Due Amount</h3></TableCell>
+                              <TableCell><h3>{(total/1000)*30*150}.00 LKR </h3></TableCell>
+                            </TableRow>
                         </TableBody>
                       </Table>
                     </TableContainer>
