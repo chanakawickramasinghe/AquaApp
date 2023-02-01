@@ -34,8 +34,8 @@ export default function Test(){
         const querySnapshot = await getDocs(collection(firestore, "users"));
         const dataArray = [];
         querySnapshot.forEach((doc) => {
-        dataArray.push({ id: doc.id, ...doc.data() });
-        console.log({ id: doc.id, ...doc.data() });
+            dataArray.push({ id: doc.id, ...doc.data() });
+            console.log({ id: doc.id, ...doc.data() });
         });
         setData(dataArray);
     };
