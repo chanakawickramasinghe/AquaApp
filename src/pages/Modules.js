@@ -19,6 +19,8 @@ import Stack from '@mui/material/Stack';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import Button from '@mui/material/Button';
+import { PieChart } from 'react-minimal-pie-chart';
+import DonutChart from 'react-donut-chart';
 import Logo from '../components/logo';
 import useResponsive from '../hooks/useResponsive';
 import { RegisterForm } from '../sections/auth/login';
@@ -35,6 +37,7 @@ import {
 } from '../sections/@dashboard/app';
 
 
+
 // ----------------------------------------------------------------------
 function createData(  
   amount : String,
@@ -46,10 +49,10 @@ function createData(
 }
 const rows = [
   createData('Master WF', 'Master'),
-  createData('Slave WF1', 'Master'),
-  createData('Slave WF2', 'Master'),
-  createData('Slave WF3', 'Master'),
-  createData('Slave WF4', 'Master'),
+  createData('Slave WF1', 'Slave'),
+  createData('Slave WF2', 'Slave'),
+  createData('Slave WF3', 'Slave'),
+  createData('Slave WF4', 'Slave'),
 ];
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -98,8 +101,8 @@ export default function Modules() {
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
-                  <Tab label="Item One" value="1" />
-                  <Tab label="Item Two" value="2" />
+                  <Tab label="Solenoid Module" value="1" />
+                  <Tab label="Water Flow Module" value="2" />
                 </TabList>
               </Box>
               <TabPanel value="1">
@@ -192,17 +195,30 @@ export default function Modules() {
                         <Button variant="contained" color="warning">Deactivate</Button>
                       </Stack>
                       </Box>
-                        <LiveMeterGraph
-                          title="Water Flow Rate"
-                          subheader="(+43%) than last year"
-                          chartData={[                
-                            {
-                              type: 'line',
-                              fill: 'solid',
-                              data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
-                            },
-                          ]}
-                        />
+                      {/* <PieChart style={{color: 'white'}}
+  data={[
+    { title: 'One', value: 46, color: '#fffff1' },
+    { title: 'Two', value: 54, color: '#C13C37' },
+  ]}
+/>; */}
+
+<div>
+<DonutChart height="300px" width="450px"
+  data={[
+    {
+      label: 'Battery Level',
+      value: 25,
+    },
+    {
+      label: '',
+      value: 75,
+      isEmpty: true,
+    },
+  ]}
+/>;
+</div>
+
+
                     </Grid> 
                 </Grid>                   
               </Box>    
