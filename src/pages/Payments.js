@@ -78,97 +78,99 @@ const StyledContent = styled('div')(({ theme }) => ({
 export default function Payments() {
   const value1 = localStorage.getItem("amount");
   const [tabIndex, setTabIndex] = useState(0);
+  const [currentMonth, setCurrentMonth] = useState();
 
   const [data, setData] = useState([]);
 
   let sum = 0;  
   const [total, setTotal] = useState(0);
-  const [flowRate, setFlowRate] = useState(0);
 
   useEffect(() => {
     const retrieveData = async () => {
-    const querySnapshot = await getDocs(collection(firestore, "Payment"));
+    const querySnapshot = await getDocs(collection(firestore, "sv1"));
+    const querySnapshot2 = await getDocs(collection(firestore, "Payment"));
     const dataArray = [];
     
     querySnapshot.forEach((doc) => { 
       doc.data().flowRate.forEach((number) => {
         sum += number;
       });
+    });
+    querySnapshot2.forEach((doc) => {
       dataArray.push({ id: doc.id, ...doc.data() });
-      const array = doc.data().flowRate;
-      if (array.length > 0) {
-        setFlowRate(array[array.length - 1]);
-      }
     });
     setTotal(sum);
     setData(dataArray);
+    setCurrentMonth(dataArray[dataArray.length - 1].Month);
   };
   retrieveData();
   }, []);
-
-  // const nextMonth = (month) => {
-  //   let nextMonth;
-  //   switch(month) {
-  //     case "January":
-  //     nextMonth = "February";
-  //     break;
-  //     case "February":
-  //     nextMonth = "March";
-  //     break;
-  //     case "March":
-  //     nextMonth = "April";
-  //     break;
-  //     case "April":
-  //     nextMonth = "May";
-  //     break;
-  //     case "May":
-  //     nextMonth = "June";
-  //     break;
-  //     case "June":
-  //     nextMonth = "July";
-  //     break;
-  //     case "July":
-  //     nextMonth = "August";
-  //     break;
-  //     case "August":
-  //     nextMonth = "September";
-  //     break;
-  //     case "September":
-  //     nextMonth = "October";
-  //     break;
-  //     case "October":
-  //     nextMonth = "November";
-  //     break;
-  //     case "November":
-  //     nextMonth = "December";
-  //     break;
-  //     case "December":
-  //     nextMonth = "January";
-  //     break;
-  //     default:
-  //     nextMonth = null;
-  //   }
-  //   return nextMonth;
-  // }
+  // const currentMonth = data[data.length - 1].Month;
+  console.log(currentMonth);
+  const nextMonth = (month) => {
+    let nextMonth;
+    switch(month) {
+      case "January":
+      nextMonth = "February";
+      break;
+      case "February":
+      nextMonth = "March";
+      break;
+      case "March":
+      nextMonth = "April";
+      break;
+      case "April":
+      nextMonth = "May";
+      break;
+      case "May":
+      nextMonth = "June";
+      break;
+      case "June":
+      nextMonth = "July";
+      break;
+      case "July":
+      nextMonth = "August";
+      break;
+      case "August":
+      nextMonth = "September";
+      break;
+      case "September":
+      nextMonth = "October";
+      break;
+      case "October":
+      nextMonth = "November";
+      break;
+      case "November":
+      nextMonth = "December";
+      break;
+      case "December":
+      nextMonth = "January";
+      break;
+      default:
+      nextMonth = null;
+    }
+    return nextMonth;
+  }
     
   // if (data && data.length) {
   //   const currentMonth = data[data.length - 1].Month;
-  //   const next = nextMonth(currentMonth);
-    
-  //   const rows = [
-  //     ...data.map((row) => {
-  //       return createData(row.Month, row.Amount);
-  //     }),
-  //     createData(next, value1),
-  //   ];
-  // }
+  const next = nextMonth(currentMonth);
     
   const rows = [
-    createData('December, 2022', value1),
-    createData('November, 2022', '1200.00 LKR'),
-    createData('Octorber, 2022', '1200.00 LKR'),
-    createData('Total', '3600.00 LKR'),
+    ...data.map((row) => {
+      return createData(row.Month, `${row.Amount} LKR`);
+    }),
+    createData(next,`${(total/1000)*30*150}.00 LKR`),
+    // createData(next, value1),
   ];
+  
+    
+  // const rows = [
+  //   
+  //   createData('November, 2022', '1200.00 LKR'),
+  //   createData('Octorber, 2022', '1200.00 LKR'),
+  //   createData('Total', '3600.00 LKR'),
+  // ];
 
   const handleTabChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);

@@ -1,3 +1,5 @@
+import React,{useRef, useState, useEffect} from 'react';
+
 import { Helmet } from 'react-helmet-async';
 
 import Table from '@mui/material/Table';
@@ -7,7 +9,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Grid, Container, TextField } from '@mui/material';
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -25,6 +26,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import Logo from '../components/logo';
 import useResponsive from '../hooks/useResponsive';
 import { RegisterForm } from '../sections/auth/login';
+import {firestore} from "../firebase";
+
 import {
   AppTasks,
   AppNewsUpdate,
@@ -36,6 +39,7 @@ import {
   AppCurrentSubject,
   AppConversionRates,
 } from '../sections/@dashboard/app';
+
 
 // ----------------------------------------------------------------------
 function createData(amount: String, status: String) {
@@ -79,6 +83,20 @@ export default function Modules() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const [fieldValue, setFieldValue] = useState("");
+
+  const handleUpdate = async () => {
+    try {
+      const docRef = firestore.collection("sv1").doc("document");
+      await docRef.update({ status: 0 });
+      console.log("Field updated successfully");
+    } catch (error) {
+      console.error("Error updating field: ", error);
+    }
+  };
+
+
   const mdUp = useResponsive('up', 'md');
 
   return (
@@ -158,7 +176,7 @@ export default function Modules() {
                       >
                         <Stack direction="row" spacing={2}>
                           {/* <Button variant="outlined" color="warning">Deattached</Button> */}
-                          <Button variant="contained" color="warning">
+                          <Button variant="contained" color="warning" onClick={handleUpdate}>
                             Deactivate
                           </Button>
                         </Stack>
