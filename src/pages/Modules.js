@@ -202,8 +202,15 @@ export default function Modules() {
   ]}
 />; */}
 
-<div>
-<DonutChart height="300px" width="450px"
+<div 
+style={{
+  marginLeft: '50px'
+  
+
+}}
+
+>
+<DonutChart 
   data={[
     {
       label: 'Battery Level',

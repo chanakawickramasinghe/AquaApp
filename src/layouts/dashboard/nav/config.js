@@ -46,12 +46,12 @@ const navConfig = [
     path: '/dashboard/live',
     icon: icon('meter'),
   },
-  {
-    component: CNavItem,
-    title: 'Devices',
-    path: '/dashboard/blog',
-    icon: icon('devices'),
-  },
+  // {
+  //   component: CNavItem,
+  //   title: 'Devices',
+  //   path: '/dashboard/blog',
+  //   icon: icon('devices'),
+  // },
   {
     component: CNavItem,
     title: 'Modules',
@@ -64,18 +64,18 @@ const navConfig = [
     path: '/dashboard/payments',
     icon: icon('payments'),
   },
-  {
-    component: CNavItem,
-    title: 'Test',
-    path: '/dashboard/test',
-    icon: icon('subscriptions'),
-  },
-  {
-    component: CNavItem,
-    title: 'Subscriptions',
-    path: '/dashboard/subscription',
-    icon: icon('subscriptions'),
-  },
+  // {
+  //   component: CNavItem,
+  //   title: 'Test',
+  //   path: '/dashboard/test',
+  //   icon: icon('subscriptions'),
+  // },
+  // {
+  //   component: CNavItem,
+  //   title: 'Subscriptions',
+  //   path: '/dashboard/subscription',
+  //   icon: icon('subscriptions'),
+  // },
   // {
   //   component: CNavItem,
   //   title: 'Settings',
