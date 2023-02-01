@@ -56,13 +56,8 @@ export default function Billing() {
   retrieveData();
   }, []);
 
-  const rows = data.map((row) => {
-    const date = row ? row.Date.toDate() : null;
-    const year = date ? date.getFullYear(): null;
-    const month = date ? date.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
-    const day = date ? date.getDate(): null;
-
-    return createData(`${year}-${month}-${day}`, row.Title, row.Description,row.Status);
+  const rows = data.map((row) => {  
+    return createData(row.Date, row.Title, row.Description,row.Status);
   });
   return (
 
