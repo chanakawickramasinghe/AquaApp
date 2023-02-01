@@ -65,8 +65,12 @@
     "react-donut-chart": "^1.3.3",
     "react-helmet-async": "^1.3.0",
     "react-hook-form": "^7.37.0",
+<<<<<<< HEAD
     "react-minimal-pie-chart": "^8.4.0",
     "react-router-dom": "^6.4.2",
+=======
+    "react-router-dom": "^6.8.0",
+>>>>>>> 5885ccb98bae577cb77037dd1d711bb5fe184568
     "react-scripts": "^5.0.1",
     "simplebar-react": "^2.4.3",
     "web-vitals": "^3.0.3"

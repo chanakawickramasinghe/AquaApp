@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useRef, useState, useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,10 +9,17 @@ import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+
+import {addDoc,collection, getDocs  } from "@firebase/firestore";
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 import close from '../components/img/close.png';
+import {firestore} from "../firebase";
+
+
+
+
 
 function createData(
   month : String,
@@ -20,29 +27,64 @@ function createData(
   units : String,
   amount : String,
   status : String,
-  payment : String,
   paiddate : String,
 ) 
 
 {
-  return { month, date, units, amount, status, payment, paiddate };
+  return { month, date, units, amount, status, paiddate };
 }
 
-const rows = [
-  createData('March, 2022', '2022.04.04', '28 Units', '2500.00', 'Paid','Pending','Pending'),
-  createData('February, 2022', '2022.03.04', '24 Units', '2000.00', 'Paid','Online','2022.04.04'),
-  createData('January, 2022', '2022.02.24', '22 Units', '1800.00', 'Paid','Online','2022.03.04'),
-  createData('December, 2021', '2022.01.04', '27 Units', '2450.00', 'Paid','Online','2022.02.24'),
-  createData('November, 2021', '2021.12.14', '17 Units', '1450.00', 'Paid','Online','2022.01.04'),
-];
+
+
+
 
 export default function Billing() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "Payment"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => {
+      dataArray.push({ id: doc.id, ...doc.data() });
+    });
+    setData(dataArray);
+  };
+  retrieveData();
+  }, []);
+
+  const rows = data.map((row) => {
+    const billDate = row ? row.BillDate.toDate() : null;
+    const billYear = billDate ? billDate.getFullYear(): null;
+    const billMonth = billDate ? billDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
+    const billDay = billDate ? billDate.getDate(): null;
+
+    const paidDate = row ? row.PaidDate.toDate() : null;
+    const paidYear = paidDate ? paidDate.getFullYear(): null;
+    const paidMonth = paidDate ? paidDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
+    const paidDay = paidDate ? paidDate.getDate(): null;
+
+    return createData(row.Month, `${billYear}-${billMonth}-${billDay}`, row.Units, row.Amount, row.Status, `${paidYear}-${paidMonth}-${paidDay}`);
+  });
+  
+  
+
+  // const rows = [
+  //   createData('March, 2022', '2022.04.04', '28 Units', '2500.00', 'Paid','Pending','Pending'),
+  //   createData('February, 2022', '2022.03.04', '24 Units', '2000.00', 'Paid','Online','2022.04.04'),
+  //   createData('January, 2022', '2022.02.24', '22 Units', '1800.00', 'Paid','Online','2022.03.04'),
+  //   createData('December, 2021', '2022.01.04', '27 Units', '2450.00', 'Paid','Online','2022.02.24'),
+  //   createData('November, 2021', '2021.12.14', '17 Units', '1450.00', 'Paid','Online','2022.01.04'),
+  // ];
+  
+
   return (
 
 
     <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Billing
+          Billing{rows.Status}
         </Typography>
     
         <Grid item xs={12} md={6} lg={8}>
@@ -68,11 +110,10 @@ export default function Billing() {
         <TableHead>
           <TableRow>
             <TableCell>Month</TableCell>
-            <TableCell>Date</TableCell>
+            <TableCell>Bill Date</TableCell>
             <TableCell>Units</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Status</TableCell>
-            <TableCell>Payment Method</TableCell>
             <TableCell>Paid Date</TableCell>
             <TableCell> </TableCell>
           </TableRow>
@@ -89,8 +130,11 @@ export default function Billing() {
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.units}</TableCell>
               <TableCell><b>{row.amount}</b></TableCell>
-              <TableCell style={{color:'green'}}>{row.status}</TableCell>
-              <TableCell>{row.payment}</TableCell>
+                {row.status === "Paid" ? (
+                  <TableCell style={{color:'green'}}>{row.status}</TableCell>
+                ) : (
+                  <TableCell style={{color:'red'}}>{row.status}</TableCell>
+                )}
               <TableCell>{row.paiddate}</TableCell>
             </TableRow>
           ))}

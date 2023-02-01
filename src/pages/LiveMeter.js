@@ -1,10 +1,13 @@
+import React,{useRef, useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-// components
+import {addDoc,collection, getDocs  } from "@firebase/firestore";
 import Calendar from 'react-calendar';
+import {firestore} from "../firebase";
+// components
 import Iconify from '../components/iconify';
 import 'react-calendar/dist/Calendar.css';
 // sections
@@ -26,6 +29,21 @@ import close from '../components/img/close.png';
 
 export default function LiveMeter() {
   const theme = useTheme();
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "sv1"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => { 
+      dataArray.push({ id: doc.id, ...doc.data() });
+    });
+    setData(dataArray);
+  };  
+  retrieveData();
+  }, []);
 
   return (
     <>
@@ -37,6 +55,9 @@ export default function LiveMeter() {
       <Typography variant="h4" sx={{ mb: 5 }}>
           Live Meter
         </Typography>
+        {data.map((item) => {
+          return (
+          <div key={item.id}>
 
         <Grid item xs={12} md={6} lg={8}>
           <center>
@@ -67,7 +88,7 @@ export default function LiveMeter() {
                 {
                   type: 'line',
                   fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  data: [item.units.monday, item.units.tuesday, item.units.wednesday, item.units.thursday, item.units.friday, item.units.saturday, item.units.sunday],
                 },
               ]}
             />
@@ -80,6 +101,9 @@ export default function LiveMeter() {
 
           
         </Grid>
+        </div>
+            );
+          })}
       </Container>
     </>
   );

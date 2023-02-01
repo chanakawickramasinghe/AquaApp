@@ -1,12 +1,15 @@
+import React,{useRef, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import ReactApexChart from 'react-apexcharts';
 // @mui
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
+import {addDoc,collection, getDocs  } from "@firebase/firestore";
 // utils
 import { fNumber } from '../../../utils/formatNumber';
 // components
 import { useChart } from '../../../components/chart';
+import {firestore} from "../../../firebase";
 
 // ----------------------------------------------------------------------
 
@@ -39,6 +42,24 @@ AppWaterUsage.propTypes = {
 };
 
 export default function AppWaterUsage({ title, subheader, chartColors, chartData, ...other }) {
+  
+  let sum = 0;  
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "sv1"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => { 
+      doc.data().flowRate.forEach((number) => {
+        sum += number;
+      });
+    });
+    setTotal(sum);
+  };
+  retrieveData();
+  }, []);
   const theme = useTheme();
 
   const chartLabels = chartData.map((i) => i.label);
@@ -80,7 +101,7 @@ export default function AppWaterUsage({ title, subheader, chartColors, chartData
                        }}>
                         <br/>
             <h2>You Have Consumed <br/>
-            3 Units Today!!! </h2>
+            {total/1000} Units Today!!! </h2>
         
           </div>
         </center>
