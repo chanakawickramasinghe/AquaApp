@@ -86,7 +86,8 @@ export default function Modules() {
   };
 
   const [fieldValue, setFieldValue] = useState("");
-  
+  const [data, setData] = useState([]);
+
   const handleUpdate = async () => {
     // const querySnapshotUp = await getDocs(collection(firestore, "sv1"));
     // const db = getFirestore(); // initialize Firestore
@@ -114,7 +115,6 @@ export default function Modules() {
   //     console.error("Error updating field: ", error);
   //   }
   // };
-  const [data, setData] = useState([]);
 
 
   useEffect(() => {
@@ -131,8 +131,27 @@ export default function Modules() {
   }, []);
   
 
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "sv1"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => { 
+      dataArray.push({ id: doc.id, ...doc.data() });
+    });
+
+
+ 
+    setData(dataArray);
+  };  
+  retrieveData();
+  }, []);
+
   const mdUp = useResponsive('up', 'md');
 
+  
+  
+   
   return (
     <>
       <Helmet>
@@ -232,11 +251,11 @@ export default function Modules() {
                           data={[
                             {
                               label: 'Battery Level',
-                              value: 25,
+                              value: item.s_battery,
                             },
                             {
                               label: '',
-                              value: 75,
+                              value: 100-item.s_battery,
                               isEmpty: true,
                             },
                           ]}
@@ -338,11 +357,13 @@ export default function Modules() {
                         data={[
                           {
                             label: 'Water Flow Rate',
-                            value: 27.9,
+                            value: item.flowRate.length-1,
+                            
                           },
+                          
                           {
                             label: '',
-                            value: 50,
+                            value: 500,
                             isEmpty: true,
                           },
                         ]}
@@ -356,11 +377,11 @@ export default function Modules() {
                         data={[
                           {
                             label: 'Battery Level',
-                            value: 25,
+                            value: item.wf_battery,
                           },
                           {
                             label: '',
-                            value: 75,
+                            value: 100-item.wf_battery,
                             isEmpty: true,
                           },
                         ]}
@@ -370,9 +391,11 @@ export default function Modules() {
                   </Grid>
                 </Box>
               </TabPanel>
+              {console.log(item.flowRate[0])}
               </div>
-            );
-          })}
+              );
+            })}
+
             </TabContext>
           </Box>
         </Grid>
