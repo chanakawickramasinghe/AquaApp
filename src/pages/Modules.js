@@ -22,7 +22,7 @@ import TabList from '@mui/lab/TabList';
 import Button from '@mui/material/Button';
 import { PieChart } from 'react-minimal-pie-chart';
 import DonutChart from 'react-donut-chart';
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, collection, getDocs  } from "firebase/firestore";
 import Logo from '../components/logo';
 import useResponsive from '../hooks/useResponsive';
 import { RegisterForm } from '../sections/auth/login';
@@ -85,6 +85,7 @@ export default function Modules() {
   };
 
   const [fieldValue, setFieldValue] = useState("");
+  const [data, setData] = useState([]);
 
   const handleUpdate = async () => {
     try {
@@ -97,8 +98,27 @@ export default function Modules() {
   };
 
 
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "sv1"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => { 
+      dataArray.push({ id: doc.id, ...doc.data() });
+    });
+
+
+ 
+    setData(dataArray);
+  };  
+  retrieveData();
+  }, []);
+
   const mdUp = useResponsive('up', 'md');
 
+  
+  
+   
   return (
     <>
       <Helmet>
@@ -115,6 +135,10 @@ export default function Modules() {
                   <Tab label="Water Flow Module" value="2" />
                 </TabList>
               </Box>
+              {data.map((item) => {
+    return (
+    <div key={item.id}>
+
               <TabPanel value="1">
                 <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={1}>
@@ -195,11 +219,11 @@ export default function Modules() {
                           data={[
                             {
                               label: 'Battery Level',
-                              value: 25,
+                              value: item.s_battery,
                             },
                             {
                               label: '',
-                              value: 75,
+                              value: 100-item.s_battery,
                               isEmpty: true,
                             },
                           ]}
@@ -301,11 +325,13 @@ export default function Modules() {
                         data={[
                           {
                             label: 'Water Flow Rate',
-                            value: 27.9,
+                            value: item.flowRate.length-1,
+                            
                           },
+                          
                           {
                             label: '',
-                            value: 50,
+                            value: 500,
                             isEmpty: true,
                           },
                         ]}
@@ -319,11 +345,11 @@ export default function Modules() {
                         data={[
                           {
                             label: 'Battery Level',
-                            value: 25,
+                            value: item.wf_battery,
                           },
                           {
                             label: '',
-                            value: 75,
+                            value: 100-item.wf_battery,
                             isEmpty: true,
                           },
                         ]}
@@ -333,6 +359,11 @@ export default function Modules() {
                   </Grid>
                 </Box>
               </TabPanel>
+              {console.log(item.flowRate[0])}
+              </div>
+              );
+            })}
+
             </TabContext>
           </Box>
         </Grid>
