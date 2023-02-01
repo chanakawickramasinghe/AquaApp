@@ -1,3 +1,5 @@
+import React,{useRef, useState, useEffect} from 'react';
+
 import { Helmet } from 'react-helmet-async';
 
 import Table from '@mui/material/Table';
@@ -7,7 +9,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Grid, Container, TextField, Typography} from '@mui/material';
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -15,13 +16,13 @@ import TabPanel from '@mui/lab/TabPanel';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { useState, useRef } from 'react';
+import {addDoc,collection, getDocs  } from "@firebase/firestore";
 
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import Button from '@mui/material/Button';
-import {addDoc,collection } from "@firebase/firestore";
+import { useLocation } from 'react-router-dom';
 import {firestore} from "../firebase";
 import Logo from '../components/logo';
 import useResponsive from '../hooks/useResponsive';
@@ -48,12 +49,7 @@ function createData(
 {
   return { amount, status };
 }
-const rows = [
-  createData('December, 2022', '1200.00 LKR'),
-  createData('November, 2022', '1200.00 LKR'),
-  createData('Octorber, 2022', '1200.00 LKR'),
-  createData('Total', '3600.00 LKR'),
-];
+
 
 const StyledRoot = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -80,7 +76,99 @@ const StyledContent = styled('div')(({ theme }) => ({
 }));
 
 export default function Payments() {
+  const value1 = localStorage.getItem("amount");
   const [tabIndex, setTabIndex] = useState(0);
+
+  const [data, setData] = useState([]);
+
+  let sum = 0;  
+  const [total, setTotal] = useState(0);
+  const [flowRate, setFlowRate] = useState(0);
+
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "Payment"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => { 
+      doc.data().flowRate.forEach((number) => {
+        sum += number;
+      });
+      dataArray.push({ id: doc.id, ...doc.data() });
+      const array = doc.data().flowRate;
+      if (array.length > 0) {
+        setFlowRate(array[array.length - 1]);
+      }
+    });
+    setTotal(sum);
+    setData(dataArray);
+  };
+  retrieveData();
+  }, []);
+
+  // const nextMonth = (month) => {
+  //   let nextMonth;
+  //   switch(month) {
+  //     case "January":
+  //     nextMonth = "February";
+  //     break;
+  //     case "February":
+  //     nextMonth = "March";
+  //     break;
+  //     case "March":
+  //     nextMonth = "April";
+  //     break;
+  //     case "April":
+  //     nextMonth = "May";
+  //     break;
+  //     case "May":
+  //     nextMonth = "June";
+  //     break;
+  //     case "June":
+  //     nextMonth = "July";
+  //     break;
+  //     case "July":
+  //     nextMonth = "August";
+  //     break;
+  //     case "August":
+  //     nextMonth = "September";
+  //     break;
+  //     case "September":
+  //     nextMonth = "October";
+  //     break;
+  //     case "October":
+  //     nextMonth = "November";
+  //     break;
+  //     case "November":
+  //     nextMonth = "December";
+  //     break;
+  //     case "December":
+  //     nextMonth = "January";
+  //     break;
+  //     default:
+  //     nextMonth = null;
+  //   }
+  //   return nextMonth;
+  // }
+    
+  // if (data && data.length) {
+  //   const currentMonth = data[data.length - 1].Month;
+  //   const next = nextMonth(currentMonth);
+    
+  //   const rows = [
+  //     ...data.map((row) => {
+  //       return createData(row.Month, row.Amount);
+  //     }),
+  //     createData(next, value1),
+  //   ];
+  // }
+    
+  const rows = [
+    createData('December, 2022', value1),
+    createData('November, 2022', '1200.00 LKR'),
+    createData('Octorber, 2022', '1200.00 LKR'),
+    createData('Total', '3600.00 LKR'),
+  ];
 
   const handleTabChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);

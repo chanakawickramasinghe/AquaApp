@@ -50,9 +50,7 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
   let sum = 0;  
   const [total, setTotal] = useState(0);
   const [lastData, setLastData] = useState(null);
-  const handleClick = () => {
-    window.location.href = 'http://localhost:3000/dashboard/payments';
-  }
+ 
 
   useEffect(() => {
     const retrieveData = async () => {
@@ -74,6 +72,13 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
   };
   retrieveData();
 }, []);
+
+  
+const handleClick = () => {    
+    const amount = (total/1000)*30*150;
+    localStorage.setItem("amount", amount);
+    window.location.href = `http://localhost:3000/dashboard/payments`;
+  }
 
   // const date = lastData ? lastData.PaidDate.toDate() : null;
   // const year = date ? date.getFullYear(): null;
