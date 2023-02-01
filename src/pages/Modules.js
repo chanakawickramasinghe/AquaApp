@@ -22,7 +22,8 @@ import TabList from '@mui/lab/TabList';
 import Button from '@mui/material/Button';
 import { PieChart } from 'react-minimal-pie-chart';
 import DonutChart from 'react-donut-chart';
-import { doc, updateDoc } from "firebase/firestore";
+import {addDoc,collection, getDocs,updateDoc,setDoc  } from "@firebase/firestore";
+
 import Logo from '../components/logo';
 import useResponsive from '../hooks/useResponsive';
 import { RegisterForm } from '../sections/auth/login';
@@ -85,17 +86,50 @@ export default function Modules() {
   };
 
   const [fieldValue, setFieldValue] = useState("");
-
+  
   const handleUpdate = async () => {
-    try {
-      const docRef = firestore.collection("sv1").doc("document");
-      await docRef.update({ status: 0 });
-      console.log("Field updated successfully");
-    } catch (error) {
-      console.error("Error updating field: ", error);
-    }
+    // const querySnapshotUp = await getDocs(collection(firestore, "sv1"));
+    // const db = getFirestore(); // initialize Firestore
+    const docRef = await setDoc(collection(firestore, "sv1"), {
+      status: 0
+    });
+
+//     const collectionRef = firestore.collection("sv1");
+// const querySnapshot = await collectionRef.get();
+// querySnapshot.forEach(async doc => {
+//   const data = {
+//     status: 0
+//   };
+//   await doc.ref.update(data);
+// });
+    // await querySnapshotUp.updateDoc({ status: 1 });
   };
 
+  // const handleUpdate = async () => {
+  //   try {
+  //     const docRef = firestore.collection("sv1").doc("document");
+  //     await docRef.update({ status: 0 });
+  //     console.log("Field updated successfully");
+  //   } catch (error) {
+  //     console.error("Error updating field: ", error);
+  //   }
+  // };
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    const retrieveData = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "sv1"));
+    const dataArray = [];
+    
+    querySnapshot.forEach((doc) => { 
+      dataArray.push({ id: doc.id, ...doc.data() });
+    });
+    setData(dataArray);
+  };  
+  retrieveData();
+  }, []);
+  
 
   const mdUp = useResponsive('up', 'md');
 
@@ -115,6 +149,9 @@ export default function Modules() {
                   <Tab label="Water Flow Module" value="2" />
                 </TabList>
               </Box>
+              {data.map((item) => {
+              return (
+              <div key={item.id}>
               <TabPanel value="1">
                 <Box sx={{ flexGrow: 1 }}>
                   <Grid container spacing={1}>
@@ -283,7 +320,7 @@ export default function Modules() {
                           {
                             type: 'line',
                             fill: 'solid',
-                            data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                            data: [item.units.monday, item.units.tuesday, item.units.wednesday, item.units.thursday, item.units.friday, item.units.saturday, item.units.sunday],
                           },
                         ]}
                       />
@@ -333,6 +370,9 @@ export default function Modules() {
                   </Grid>
                 </Box>
               </TabPanel>
+              </div>
+            );
+          })}
             </TabContext>
           </Box>
         </Grid>
