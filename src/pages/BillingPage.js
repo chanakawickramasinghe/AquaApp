@@ -96,9 +96,9 @@ export default function Billing() {
                       padding: '30px',
                        color:'#2065D1',
                        borderRadius:'5px'}}>
-                        <img src={close} alt="close" height="20px"
+                        {/* <img src={close} alt="close" height="20px"
                       style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
-                      />
+                      /> */}
                       <b>History : </b> You can see "Bill History" and "Payment History" back
                        <br/> to 12 months, if you want to see more info touch on each row.            
           </div>
