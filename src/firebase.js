@@ -2,6 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getFirestore} from "@firebase/firestore";
+import "firebase/compat/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut} from "firebase/auth";
+import { query, getDocs, collection, where, addDoc} from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -19,3 +22,4 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const firestore = getFirestore(app);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
