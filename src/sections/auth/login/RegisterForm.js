@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import { Stack, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+// import { Link } from 'react-router-dom'
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
@@ -13,6 +14,10 @@ import Iconify from '../../../components/iconify';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/login');
+  }
  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
@@ -88,7 +93,7 @@ export default function RegisterForm() {
         
       <Typography variant="body2" sx={{ mt: 5 }} align="center">
         Already have an account? {''}
-        <Link variant="subtitle2">Login</Link>
+        <Link to="/login">Login</Link>
       </Typography>
     </>
   );

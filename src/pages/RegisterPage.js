@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { Container, Typography, Divider, Stack, Button } from '@mui/material';
+
+import { Link } from 'react-router-dom'
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
