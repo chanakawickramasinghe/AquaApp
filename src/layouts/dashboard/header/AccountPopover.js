@@ -2,6 +2,9 @@ import { useState } from 'react';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import {  signOut } from "firebase/auth";
+import {auth} from '../../../firebase';
 // mocks_
 import account from '../../../_mock/account';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,6 +30,17 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
+  const navigate = useNavigate();
+ 
+    const handleLogout = () => {               
+        signOut(auth).then(() => {
+        // Sign-out successful.
+            navigate("/login");
+            console.log("Signed out successfully")
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -98,7 +112,7 @@ export default function AccountPopover() {
 
         {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
           Logout  
  
  
