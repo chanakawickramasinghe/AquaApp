@@ -58,7 +58,7 @@ export default function Nav({ openNav, onCloseNav }) {
         <h1 style={{color:'white', paddingLeft:'20px'}}>Aqua App</h1>
       </Box>
 
-      <Box sx={{ mb: 2, mx: 2.5 }}>
+      {/* <Box sx={{ mb: 2, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar src={account.photoURL} alt="photoURL" />
@@ -74,7 +74,7 @@ export default function Nav({ openNav, onCloseNav }) {
             </Box>
           </StyledAccount>
         </Link>
-      </Box>
+      </Box> */}
 
       <NavSection data={navConfig} />
 

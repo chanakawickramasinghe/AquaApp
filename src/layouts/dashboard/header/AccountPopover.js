@@ -4,22 +4,23 @@ import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 // mocks_
 import account from '../../../_mock/account';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
+  // {
+  //   label: 'Home',
+  //   icon: 'eva:home-fill',
+  // },
+  // {
+  //   label: 'Profile',
+  //   icon: 'eva:person-fill',
+  // },
+  // {
+  //   label: 'Settings',
+  //   icon: 'eva:settings-2-fill',
+  // },
 ];
 
 // ----------------------------------------------------------------------
@@ -40,7 +41,7 @@ export default function AccountPopover() {
       <IconButton
         onClick={handleOpen}
         sx={{
-          p: 0,
+          P: 0,
           ...(open && {
             '&:before': {
               zIndex: 1,
@@ -54,7 +55,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar style={{height: '30px', width:'30px'}} src={account.photoURL} alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -76,16 +77,16 @@ export default function AccountPopover() {
           },
         }}
       >
-        <Box sx={{ my: 1.5, px: 2.5 }}>
+        {/* <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
             {account.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {account.email}
           </Typography>
-        </Box>
+        </Box> */}
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
@@ -95,10 +96,13 @@ export default function AccountPopover() {
           ))}
         </Stack>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
         <MenuItem onClick={handleClose} sx={{ m: 1 }}>
-          Logout
+          Logout  
+ 
+ 
+ {/* <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" /> */}
         </MenuItem>
       </Popover>
     </>
