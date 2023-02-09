@@ -75,9 +75,9 @@ export default function Billing() {
                       padding: '30px',
                        color:'#2065D1',
                        borderRadius:'5px'}}>
-                        <img src={close} alt="close" height="20px"
+                        {/* <img src={close} alt="close" height="20px"
                       style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
-                      />
+                      /> */}
                       <b>You Have Any Complaints : </b> We operate a 24 hour call center on customer
                        <br/> care hotline 1939. You can call this hotline also to lodge your complaints.           
           </div>

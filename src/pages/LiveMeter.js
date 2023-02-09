@@ -68,9 +68,9 @@ export default function LiveMeter() {
                       padding: '30px',
                        color:'#2065D1',
                        borderRadius:'5px'}}>
-                        <img src={close} alt="close" height="20px"
+                        {/* <img src={close} alt="close" height="20px"
                       style={{marginLeft:'700px', paddingBottom:'5px', marginBottom:'5px'}}
-                      />
+                      /> */}
                       <b>Bill Calculator : </b> Consumption will provide for 30 days when calculating 
                        <br/> the bill amount and this will calculate the domestic bill amount.            
           </div>

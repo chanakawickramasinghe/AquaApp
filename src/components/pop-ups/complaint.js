@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import {useRef} from 'react';
 import { set } from 'lodash';
 import {addDoc,collection } from "@firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 import {firestore} from "../../firebase";
 
 
@@ -59,12 +60,18 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
 
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClose2 = () => {
+    setOpen(false);
+    // window.location.reload(false);
   };
 
   const titleRef = useRef(null);
@@ -95,7 +102,8 @@ export default function CustomizedDialogs() {
         
 
         try{
-            addDoc(ref,data);
+            addDoc(ref,data);            
+            setTimeout(() => window.location.reload(), 1000);
         }catch(e){
             console.log(e);
         }
@@ -120,16 +128,16 @@ export default function CustomizedDialogs() {
         
           <Typography gutterBottom>
           Complaint Type <br/>
-          <input type="text" style={{  width: '500px'}} id="Title" ref={titleRef} />
+          <input type="text" style={{  width: '500px'}} id="Title" ref={titleRef} required />
           </Typography>
           <Typography gutterBottom>
           Description <br/>
-          <input type="textarea" style={{  width: '500px', height: '200px'}} id="name" ref={descRef} />
+          <input type="textarea" style={{  width: '500px', height: '200px'}} id="name" ref={descRef} required />
           </Typography>
         </DialogContent>
         <DialogActions>
           
-            <Button type="submit">Add Complaint</Button>
+            <Button type="submit" onClick={handleClose2}>Add Complaint</Button>
           {/* <Button autoFocus onClick={handleClose}>
             Save changes
           </Button> */}
