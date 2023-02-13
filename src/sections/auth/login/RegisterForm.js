@@ -50,15 +50,17 @@ export default function RegisterForm() {
   return (
     <>    
       <Stack spacing={3}>
-        <TextField name="text" label="Name" 
+        <TextField name="text" label="Email" 
            value={email}
-           onChange={(e) => setEmail(e.target.value)}        
+           onChange={(e) => setEmail(e.target.value)} 
+           required       
         />
         {/* <TextField name="text" label="Account Number" /> */}
         <TextField
           name="password"
           label="Password"
           value={password}
+          required
           onChange={(e) => setPassword(e.target.value)} 
           type={showPassword ? 'text' : 'password'}
           InputProps={{
