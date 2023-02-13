@@ -40,15 +40,29 @@ function createData(
 
 export default function Billing() {
   const [data, setData] = useState([]);
+  // let paymentSum = 0;
+  // let billingSum = 0;  
+
 
   useEffect(() => {
     const retrieveData = async () => {
     const querySnapshot = await getDocs(collection(firestore, "Payment"));
+    const querySnapshot2 = await getDocs(collection(firestore, "Billing"));
+
     const dataArray = [];
     
-    querySnapshot.forEach((doc) => {
+    querySnapshot2.forEach((doc) => {
+      // doc.data().Amount.forEach((number) => {
+      //   paymentSum += number;
+      // });
       dataArray.push({ id: doc.id, ...doc.data() });
     });
+
+    // querySnapshot2.forEach((doc) => {
+    //   doc.data().amount.forEach((number) => {
+    //     billingSum += number;
+    //   });
+    // });
     setData(dataArray);
   };
   retrieveData();
@@ -65,7 +79,7 @@ export default function Billing() {
     // const paidMonth = paidDate ? paidDate.getMonth() + 1: null; // 0-based index, add 1 to get the human-readable month
     // const paidDay = paidDate ? paidDate.getDate(): null;
 
-    return createData(row.Month, row.BillDate, row.Units, row.Amount, row.Status, row.PaidDate);
+    return createData(row.month, row.billDate, row.units, row.amount);
   });
   
   
@@ -113,9 +127,6 @@ export default function Billing() {
             <TableCell>Bill Date</TableCell>
             <TableCell>Units</TableCell>
             <TableCell>Amount</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Paid Date</TableCell>
-            <TableCell> </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -130,12 +141,6 @@ export default function Billing() {
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.units}</TableCell>
               <TableCell><b>{row.amount}</b></TableCell>
-                {row.status === "Paid" ? (
-                  <TableCell style={{color:'green'}}>{row.status}</TableCell>
-                ) : (
-                  <TableCell style={{color:'red'}}>{row.status}</TableCell>
-                )}
-              <TableCell>{row.paiddate}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -49,7 +49,10 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
 
   let sum = 0;  
   const [total, setTotal] = useState(0);
+  const [total1, setTotal1] = useState(0);
   const [lastData, setLastData] = useState(null);
+  let paymentSum = 0;
+  let billingSum = 0;  
  
 
   useEffect(() => {
@@ -57,6 +60,8 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
     const querySnapshot = await getDocs(collection(firestore, "sv1"));
     const dataArray = [];
     const dataArray2 = [];
+    const dataArray3 = [];
+
     
     querySnapshot.forEach((doc) => { 
       doc.data().flowRate.forEach((number) => {
@@ -65,10 +70,22 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
     });
     setTotal(sum);
     const querySnapshot2 = await getDocs(collection(firestore, "Payment")); 
+    const querySnapshot3 = await getDocs(collection(firestore, 'Billing'));
+
     querySnapshot2.forEach((doc) => {
       dataArray2.push({ id: doc.id, ...doc.data() });
     });
+    querySnapshot3.forEach((doc) => {
+      dataArray3.push({ id: doc.id, ...doc.data() });
+    });
     setLastData(dataArray2.slice(-1)[0]);
+    dataArray2.forEach(number => {
+      paymentSum += number.Amount;
+    });
+    dataArray3.forEach(number => {
+      billingSum += number.amount;
+    });
+    setTotal1((billingSum - paymentSum).toFixed(2));
   };
   retrieveData();
 }, []);
@@ -124,7 +141,7 @@ const handleClick = () => {
                             }}>
                               <br/>
                   <h3>Your Due Amount </h3>
-                  <h1>Rs. {(total/1000)*30*150}</h1>
+                  <h1>Rs. {total1}</h1>
                   <button onClick={handleClick} style={{backgroundColor: 'white', color: 'blue', borderRadius: '5px',
                                   paddingLeft: '25px', paddingRight: '25px', borderColor: 'white'
                                   // paddingTop: '4px', paddingBottom: '4px'

@@ -16,7 +16,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { addDoc, collection, getDocs } from '@firebase/firestore';
+import { addDoc, collection, getDocs, limit  } from '@firebase/firestore';
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -71,6 +71,8 @@ export default function Payments() {
   const value1 = localStorage.getItem('amount');
   const [tabIndex, setTabIndex] = useState(0);
   const [currentMonth, setCurrentMonth] = useState();
+  let paymentSum = 0;
+  let billingSum = 0;  
 
   const [data, setData] = useState([]);
 
@@ -81,18 +83,33 @@ export default function Payments() {
     const retrieveData = async () => {
       const querySnapshot = await getDocs(collection(firestore, 'sv1'));
       const querySnapshot2 = await getDocs(collection(firestore, 'Payment'));
+      const querySnapshot3 = await getDocs(collection(firestore, 'Billing'));
       const dataArray = [];
+      const dataArray2 = [];
 
+      
+      querySnapshot2.forEach((doc) => {
+        dataArray.push({ id: doc.id, ...doc.data() });
+      });
+      querySnapshot3.forEach((doc) => {
+        dataArray2.push({ id: doc.id, ...doc.data() });
+      });
       querySnapshot.forEach((doc) => {
         doc.data().flowRate.forEach((number) => {
           sum += number;
         });
       });
-      querySnapshot2.forEach((doc) => {
-        dataArray.push({ id: doc.id, ...doc.data() });
-      });
-      setTotal(sum);
+      console.log(paymentSum);
+      // setTotal(sum);
       setData(dataArray);
+      dataArray.forEach(number => {
+        paymentSum += number.Amount;
+      });
+      dataArray2.forEach(number => {
+        billingSum += number.amount;
+      });
+      setTotal((billingSum - paymentSum).toFixed(2));
+      // paymentSum = paymentSum+
       setCurrentMonth(dataArray[dataArray.length - 1].Month);
     };
     retrieveData();
@@ -150,7 +167,7 @@ export default function Payments() {
 
   const rows = [
     ...data.map((row) => {
-      return createData(row.Month, `${row.Amount} LKR`);
+      return createData(row.PaidDate, `${row.Amount} LKR`);
     }),
     // createData(next,`${(total/1000)*30*150}.00 LKR`),
     // createData(next, value1),
@@ -182,12 +199,13 @@ export default function Payments() {
     console.log(amountRef.current.value);
 
     const data = {
-      Amount: amountRef.current.value,
+      Amount: parseFloat(amountRef.current.value),
       PaidDate: currentDate.toLocaleDateString(),
     };
 
     try {
       addDoc(ref, data);
+      setTimeout(() => window.location.reload(), 1000);
     } catch (e) {
       console.log(e);
     }
@@ -239,7 +257,7 @@ export default function Payments() {
                             <h3>Due Amount</h3>
                           </TableCell>
                           <TableCell>
-                            <h3>{(total / 1000) * 30 * 150}.00 LKR </h3>
+                            <h3>{total} LKR </h3>
                           </TableCell>
                         </TableRow>
                       </TableBody>
@@ -271,24 +289,28 @@ export default function Payments() {
                             paddingLeft: '12px',
                             borderColor: 'grey',
                           }}
-                          placeholder="Amount"
+                          placeholder="Amount *"
+                          required
                         />
                         <TextField
                           style={{ margin: '7px', marginLeft: '50px', width: '300px' }}
                           id="outlined-required"
                           label="Card Number"
+                          required
                           // defaultValue="Enter your card number here"
                         />
                         <TextField
                           style={{ margin: '7px', width: '300px', marginLeft: '50px' }}
                           id="outlined-required"
                           label="Expiry Date"
+                          required
                           // defaultValue="Enter expiry date here"
                         />
                         <TextField
                           style={{ margin: '7px', width: '300px', marginLeft: '50px' }}
                           id="outlined-required"
                           label="CVV"
+                          required
                         />
                       </div>
                       <Box
