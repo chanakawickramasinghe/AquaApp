@@ -45,12 +45,14 @@ export default function LoginForm() {
       <Stack spacing={3}>
         <TextField name="email" label="Email address"   id="email-address"
            onChange={(e)=>setEmail(e.target.value)}
+           required
         />
 
         <TextField
           name="password"
           label="Password"
           id="password"
+          required
           onChange={(e)=>setPassword(e.target.value)}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
