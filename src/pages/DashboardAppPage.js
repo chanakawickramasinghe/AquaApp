@@ -52,6 +52,10 @@ export default function DashboardAppPage() {
   retrieveData();
   }, []);
 
+const today = new Date();
+const date = today.getDate();
+console.log(date);
+
   return (
     <>
       <Helmet>
@@ -112,7 +116,7 @@ export default function DashboardAppPage() {
               </Grid>
               
               <Grid item xs={12} sm={6} md={2}>
-                <AppWidgetSummary title="Monthly Usage" total={(total/1000)*30} color="info" icon={'material-symbols:calendar-month-outline-rounded'} />
+                <AppWidgetSummary title="Monthly Usage" total={(total/1000)*date} color="info" icon={'material-symbols:calendar-month-outline-rounded'} />
               </Grid>
 
               <Grid item xs={12} sm={6} md={2}>
