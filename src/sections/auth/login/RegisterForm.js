@@ -28,15 +28,16 @@ export default function RegisterForm() {
   //   navigate('/dashboard', { replace: true });
   // };
 
-  const onSubmit = async (e) => {
+  function onSubmit(e) {
     e.preventDefault()
    
-    await createUserWithEmailAndPassword(auth, email, password)
+     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
           navigate('/login', { replace: true });
+          alert('Account Created!');
           // ...
       })
       .catch((error) => {
@@ -45,10 +46,12 @@ export default function RegisterForm() {
           console.log(errorCode, errorMessage);
           // ..
       });
+      
   }
 
   return (
-    <>    
+    <>   
+    <form onSubmit={onSubmit}>
       <Stack spacing={3}>
         <TextField name="text" label="Email" 
            value={email}
@@ -60,6 +63,7 @@ export default function RegisterForm() {
           name="password"
           label="Password"
           value={password}
+          // pattern="^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
           required
           onChange={(e) => setPassword(e.target.value)} 
           type={showPassword ? 'text' : 'password'}
@@ -89,7 +93,7 @@ export default function RegisterForm() {
         /> */}
       </Stack>
       
-      <LoadingButton sx={{ mt: 5 }} fullWidth size="large" type="submit" variant="contained" onClick={onSubmit}>
+      <LoadingButton sx={{ mt: 5 }} fullWidth size="large" type="submit" variant="contained" >
         Create Account
       </LoadingButton>
         
@@ -97,6 +101,7 @@ export default function RegisterForm() {
         Already have an account? {''}
         <Link to="/login">Login</Link>
       </Typography>
+      </form>
     </>
   );
 }

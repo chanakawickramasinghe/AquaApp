@@ -4,7 +4,7 @@ import ReactApexChart from 'react-apexcharts';
 // @mui
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
-import {addDoc,collection, getDocs  } from "@firebase/firestore";
+import {addDoc,collection, getDocs, orderBy, query } from "@firebase/firestore";
 // utils
 import { fNumber } from '../../../utils/formatNumber';
 // components
@@ -69,7 +69,7 @@ export default function AppCurrentVisits({ title, subheader, chartColors, chartD
       });
     });
     setTotal(sum);
-    const querySnapshot2 = await getDocs(collection(firestore, "Payment")); 
+    const querySnapshot2 = await getDocs(query(collection(firestore, "Payment"), orderBy('PaidDate', "desc"))); 
     const querySnapshot3 = await getDocs(collection(firestore, 'Billing'));
 
     querySnapshot2.forEach((doc) => {

@@ -70,7 +70,7 @@ export default function CustomizedDialogs() {
   };
 
   const handleClose2 = () => {
-    setOpen(false);
+    // setOpen(false);
     // window.location.reload(false);
   };
 
@@ -102,8 +102,10 @@ export default function CustomizedDialogs() {
         
 
         try{
-            addDoc(ref,data);            
+            addDoc(ref,data);    
+            alert('Complaint Added!');        
             setTimeout(() => window.location.reload(), 1000);
+            
         }catch(e){
             console.log(e);
         }

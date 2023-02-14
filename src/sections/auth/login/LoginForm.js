@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import { async } from '@firebase/util';
 import { auth } from '../../../firebase';
 
 
@@ -19,7 +20,8 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
 
   const [showPassword, setShowPassword] = useState(false);
-  const onLogin = (e) => {
+  const onLogin = async(e)=>{
+    // console.log(12);
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -42,8 +44,9 @@ export default function LoginForm() {
 
   return (
     <>
+      <form onSubmit={onLogin} >
       <Stack spacing={3}>
-        <TextField name="email" label="Email address"   id="email-address"
+        <TextField name="email" label="Email address"   id="email-address" type="text"
            onChange={(e)=>setEmail(e.target.value)}
            required
         />
@@ -74,9 +77,10 @@ export default function LoginForm() {
         </Link> */}
       </Stack>
 
-      <LoadingButton  fullWidth size="large" type="submit" variant="contained"  onClick={onLogin}  >
+      <LoadingButton  fullWidth size="large" type="submit" variant="contained"    >
         Login
       </LoadingButton>
+      </form>
     </>
   );
 }

@@ -10,7 +10,7 @@ import TablePagination from '@mui/material/TablePagination';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 
-import {addDoc,collection, getDocs  } from "@firebase/firestore";
+import {addDoc,collection, getDocs, orderBy, query  } from "@firebase/firestore";
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -47,7 +47,7 @@ export default function Billing() {
   useEffect(() => {
     const retrieveData = async () => {
     const querySnapshot = await getDocs(collection(firestore, "Payment"));
-    const querySnapshot2 = await getDocs(collection(firestore, "Billing"));
+    const querySnapshot2 = await getDocs(query(collection(firestore, "Billing"), orderBy('billDate')));
 
     const dataArray = [];
     

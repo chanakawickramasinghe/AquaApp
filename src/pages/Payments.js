@@ -16,7 +16,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { addDoc, collection, getDocs, limit  } from '@firebase/firestore';
+import { addDoc, collection, getDocs, limit, orderBy, query  } from '@firebase/firestore';
 
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -82,12 +82,11 @@ export default function Payments() {
   useEffect(() => {
     const retrieveData = async () => {
       const querySnapshot = await getDocs(collection(firestore, 'sv1'));
-      const querySnapshot2 = await getDocs(collection(firestore, 'Payment'));
+      const querySnapshot2 = await getDocs(query(collection(firestore, 'Payment'), limit(10), orderBy('PaidDate', "desc")));
       const querySnapshot3 = await getDocs(collection(firestore, 'Billing'));
       const dataArray = [];
       const dataArray2 = [];
 
-      
       querySnapshot2.forEach((doc) => {
         dataArray.push({ id: doc.id, ...doc.data() });
       });
@@ -115,7 +114,7 @@ export default function Payments() {
     retrieveData();
   }, []);
   // const currentMonth = data[data.length - 1].Month;
-  console.log(currentMonth);
+  // console.log(currentMonth);
   const nextMonth = (month) => {
     let nextMonth;
     switch (month) {
