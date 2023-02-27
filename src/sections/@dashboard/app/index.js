@@ -9,3 +9,4 @@ export { default as AppCurrentSubject } from './AppCurrentSubject';
 export { default as AppConversionRates } from './AppConversionRates';
 export { default as AppWaterUsage} from './AppWaterUsage';
 export { default as LiveMeterGraph} from './LiveMeterGraph';
+export { default as RandomNumber} from './RandomNumber';

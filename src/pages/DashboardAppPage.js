@@ -20,6 +20,7 @@ import {
   AppCurrentSubject,
   AppConversionRates,
   AppWaterUsage,
+  RandomNumber,
 } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -148,6 +149,7 @@ console.log(date);
                   ]}
                 />
               </Grid>
+            <RandomNumber/>
             </Grid> 
           
             </div>

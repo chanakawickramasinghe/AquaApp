@@ -116,6 +116,46 @@ export default function Modules() {
   //   }
   // };
 
+  
+  const [number, setNumber] = useState(2400);
+  const [number1, setNumber1] = useState(2400);
+  const [number2, setNumber2] = useState(2400);
+  const [number3, setNumber3] = useState(2400);
+  const [number4, setNumber4] = useState(2400);
+  const [number5, setNumber5] = useState(2400);
+  const [number6, setNumber6] = useState(2400);
+  const [number7, setNumber7] = useState(2400);
+
+  // let num1 = 0;
+  // let num2 = 0;
+
+
+  const [min, setMin] = useState(2400);
+  const [max, setMax] = useState(2500);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      setNumber(newNumber);   
+      
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [min, max]);
+
+  function refreshValues() {
+    setInterval(() => {
+      setNumber1(number);
+      setNumber2(number1);
+      setNumber3(number2);
+      setNumber4(number3);
+      setNumber5(number4);
+      setNumber6(number5);
+      setNumber7(number6);
+    }, 3000);
+  }
+  
+  refreshValues();  
 
   useEffect(() => {
     const retrieveData = async () => {
@@ -335,11 +375,11 @@ export default function Modules() {
                       <LiveMeterGraph
                         title="Water Flow Rate"
                         subheader="(+43%) than last year"
-                        chartData={[
+                        chartData={[                
                           {
                             type: 'line',
                             fill: 'solid',
-                            data: [item.units.monday, item.units.tuesday, item.units.wednesday, item.units.thursday, item.units.friday, item.units.saturday, item.units.sunday],
+                            data: [number7 ,number6 , number5, number4, number3, number2, number1],
                           },
                         ]}
                       />
