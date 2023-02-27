@@ -138,7 +138,7 @@ export default function Modules() {
       const newNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       setNumber(newNumber);   
       
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [min, max]);
@@ -152,7 +152,7 @@ export default function Modules() {
       setNumber5(number4);
       setNumber6(number5);
       setNumber7(number6);
-    }, 3000);
+    }, 5000);
   }
   
   refreshValues();  

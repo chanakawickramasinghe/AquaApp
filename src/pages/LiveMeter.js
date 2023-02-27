@@ -31,14 +31,14 @@ export default function LiveMeter() {
   const theme = useTheme();
   const [data, setData] = useState([]);
 
-  const [number, setNumber] = useState(0);
-  const [number1, setNumber1] = useState(2400);
-  const [number2, setNumber2] = useState(2400);
-  const [number3, setNumber3] = useState(2400);
-  const [number4, setNumber4] = useState(2400);
-  const [number5, setNumber5] = useState(2400);
-  const [number6, setNumber6] = useState(2400);
-  const [number7, setNumber7] = useState(2400);
+  const [number, setNumber] = useState(2300);
+  const [number1, setNumber1] = useState(2300);
+  const [number2, setNumber2] = useState(2300);
+  const [number3, setNumber3] = useState(2300);
+  const [number4, setNumber4] = useState(2300);
+  const [number5, setNumber5] = useState(2300);
+  const [number6, setNumber6] = useState(2300);
+  const [number7, setNumber7] = useState(2300);
 
   // let num1 = 0;
   // let num2 = 0;
@@ -52,7 +52,7 @@ export default function LiveMeter() {
       const newNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       setNumber(newNumber);   
       
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [min, max]);
@@ -66,7 +66,7 @@ export default function LiveMeter() {
       setNumber5(number4);
       setNumber6(number5);
       setNumber7(number6);
-    }, 3000);
+    }, 5000);
   }
   
   refreshValues();  
