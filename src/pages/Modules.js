@@ -383,6 +383,24 @@ export default function Modules() {
                           },
                         ]}
                       />
+
+                        {/* #To use when meter is 0 */}
+
+                        {/* <LiveMeterGraph
+                          title="Water Flow Rate"
+                          subheader="(+43%) than last year"
+                          chartData={[                
+                            {
+                              type: 'line',
+                              fill: 'solid',
+                              data: [0 ,0 , 0, 0, 0, 0, 0],
+                            },
+                          ]}
+                        /> */}
+
+                          {/* ---------------------------------- */}
+
+
                     </Grid>
                     <div
                       style={{
