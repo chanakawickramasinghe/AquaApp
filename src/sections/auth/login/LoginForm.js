@@ -34,6 +34,7 @@ export default function LoginForm() {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage)
+        alert('Incorrect Email or Password!');
     });
    
 }
