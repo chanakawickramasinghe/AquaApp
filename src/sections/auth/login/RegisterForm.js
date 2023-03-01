@@ -44,6 +44,8 @@ export default function RegisterForm() {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
+          alert('Incorrect Email or Password!');
+          // alert('Account Created!');
           // ..
       });
       
@@ -77,6 +79,7 @@ export default function RegisterForm() {
             ),
           }}
         />
+        <p><font color="maroon" size="-1"> *Password should contain at least 8 characters including 1 Capital Letter, 1 Simple Letter 1 Symbol and 1 Number </font></p>
         {/* <TextField
           name="password"
           label="Reenter Password"
