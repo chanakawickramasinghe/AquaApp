@@ -149,7 +149,7 @@ console.log(date);
                   ]}
                 />
               </Grid>
-            <RandomNumber/>
+            {/* <RandomNumber/> */}
             </Grid> 
           
             </div>

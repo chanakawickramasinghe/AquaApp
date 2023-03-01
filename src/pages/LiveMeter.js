@@ -157,7 +157,7 @@ export default function LiveMeter() {
 
           
         </Grid>
-        {number6} {number5} {number4} {number3} {number2} {number1}  
+        {/* {number6} {number5} {number4} {number3} {number2} {number1}   */}
         </div>
             );
           })}
